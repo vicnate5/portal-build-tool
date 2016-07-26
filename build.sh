@@ -240,6 +240,7 @@ echo "PORTAL BUILD IS COMPLETE"
 
 if [[ $start == "start" ]] && [[ $appServer == "tomcat" ]]
 then
+	echo "Starting portal on Tomcat"
 	cd $bundleDir/tomcat-8.0.32/bin
 	./catalina.sh run
 else
