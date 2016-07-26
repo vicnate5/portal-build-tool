@@ -5,33 +5,33 @@
 ######################################################################################################################
 
 ## Username for properties files ##
-username="vicnate5"
+username="username"
 
 ## MYSQL ##
 # The script can re-create your mysql database after building the bundle
 
 ## MySQL login##
-mysqlUsername=""
+mysqlUsername="root"
 mysqlPassword=""
 
 ## MySQL Databases ##
-masterDB="master"
+masterDB="lportal"
 public70xDB="lportal"
 ee70xDB="lportal"
 ee62xDB="lportal"
 
 ## Portal Directories ##
-masterSourceDir="/Users/vicnate5/Liferay/liferay-portal-master"
-masterBundleDir="/Users/vicnate5/bundles/master-bundles"
+masterSourceDir="/Users/username/Liferay/liferay-portal-master"
+masterBundleDir="/Users/username/bundles/master-bundles"
 
-public70xSourceDir="/Users/vicnate5/Liferay/liferay-portal-7.0.x"
-public70xBundleDir="/Users/vicnate5/bundles/7.0.x-bundles"
+public70xSourceDir="/Users/username/Liferay/liferay-portal-7.0.x"
+public70xBundleDir="/Users/username/bundles/7.0.x-bundles"
 
-ee70xSourceDir="/Users/vicnate5/Liferay/liferay-portal-ee-7.0.x"
-ee70xBundleDir="/Users/vicnate5/bundles/ee-7.0.x-bundles"
+ee70xSourceDir="/Users/username/Liferay/liferay-portal-ee-7.0.x"
+ee70xBundleDir="/Users/username/bundles/ee-7.0.x-bundles"
 
-ee62xSourceDir="/Users/vicnate5/Liferay/liferay-portal-ee-6.2.x"
-ee62xBundleDir="/Users/vicnate5/bundles/ee-6.2.x-bundles"
+ee62xSourceDir="/Users/username/Liferay/liferay-portal-ee-6.2.x"
+ee62xBundleDir="/Users/username/bundles/ee-6.2.x-bundles"
 
 ######################################################################################################################
 #FUNCTIONS############################################################################################################
@@ -218,7 +218,6 @@ if [[ $appServer == "tomcat" ]] || [[ -z $appServer ]]
 then
 	ant -f build-dist.xml build-dist-tomcat \
 	-Dtomcat.keep.app.server.properties=true \
-	-Denv.JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_74.jdk/Contents/Home
 else
 	ant -f build-dist.xml build-dist-$appServer
 fi
