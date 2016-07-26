@@ -125,6 +125,12 @@ start="$3"
 scriptSourceDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 propsDir=${scriptSourceDir}/properties
 
+if [[ -z $branch ]]
+then
+	echo "Please pass in branch name"
+	exit
+fi
+
 if [[ -z $appServer ]]
 then
 	appServer=tomcat
