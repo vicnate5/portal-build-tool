@@ -230,7 +230,7 @@ then
 	ant -f build-dist.xml build-dist-tomcat \
 	-Dtomcat.keep.app.server.properties=true
 else
-	ant -f build-dist.xml build-dist-$appServer
+	ant -f build-dist.xml build-dist-${appServer}
 fi
 
 echo "Remaking MySQL Database"
