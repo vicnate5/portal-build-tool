@@ -125,7 +125,12 @@ start="$3"
 scriptSourceDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 propsDir=${scriptSourceDir}/properties
 
-echo "Building $branch"
+if [[ -z $appServer ]]
+then
+	appServer=tomcat
+fi
+
+echo "Building $branch on $appServer"
 echo
 
 if [[ $branch == "master"  ]]
@@ -214,10 +219,10 @@ echo "ANT COMPILE"
 ant compile
 echo "ANT BUILD-DIST-$appServer"
 
-if [[ $appServer == "tomcat" ]] || [[ -z $appServer ]]
+if [[ $appServer == "tomcat" ]]
 then
 	ant -f build-dist.xml build-dist-tomcat \
-	-Dtomcat.keep.app.server.properties=true \
+	-Dtomcat.keep.app.server.properties=true
 else
 	ant -f build-dist.xml build-dist-$appServer
 fi
