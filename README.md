@@ -5,8 +5,9 @@
 1. Asks if you want to reset branch and pull upstream
 2. Adds necessary property files to your repo
 3. Builds portal
-4. Cleans your mysql database
-5. *Optionally*, starts portal after building (Tomcat Only)
+4. Generates portal-ext.properties file
+5. Cleans your mysql database
+6. *Optionally*, starts portal after building (Tomcat Only)
 
 Branches currently supported
 ```
@@ -22,7 +23,7 @@ ee-6.2.x
 1. Clone portal-build-tool from https://github.com/vicnate5/portal-build-tool
 2. Edit the different property files in the */properties* folder.
 
-  These property files are the baseline for the properties that will be added to your repo by the script. Allows you to have a central and safe location for your source properties. Stop fearing the `git clean -fdx`!
+  **Important** These property files are the baseline for the properties that will be added to your repo by the script. *They will overwrite your properties in your source directory*, **but**, This allows you to have a central and safe location for your source properties. Stop fearing the `git clean -fdx`!
 
 3. Open build.sh
 4. Edit Environment Variables (mysql login, mysql databases, and portal directories)
