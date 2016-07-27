@@ -188,26 +188,16 @@ then
 fi
 
 echo "Adding properties files"
-if [[ -e $propsDir/test.${username}.properties ]]
-then
-	cp $propsDir/test.${username}.properties $sourceDir/test.${username}.properties
-else
-	cp $propsDir/test.username.properties $sourceDir/test.${username}.properties
-fi
 
-if [[ -e $propsDir/app.server.${username}.properties ]]
-then
-	cp $propsDir/app.server.${username}.properties $sourceDir/app.server.${username}.properties
-else
-	cp $propsDir/app.server.username.properties $sourceDir/app.server.${username}.properties
-fi
-
-if [[ -e $propsDir/build.${username}.properties ]]
-then
-	cp $propsDir/build.${username}.properties $sourceDir/build.${username}.properties
-else
-	cp $propsDir/build.username.properties $sourceDir/build.${username}.properties
-fi
+for p in "test" "app.server" "build"
+do
+	if [[ -e ${propsDir}/${p}.${username}.properties ]]
+	then
+		cp ${propsDir}/${p}.${username}.properties ${sourceDir}/${p}.${username}.properties
+	else
+		cp ${propsDir}/${p}.username.properties ${sourceDir}/${p}.${username}.properties
+	fi
+done
 
 echo
 echo "Configuring app server parent directory"
