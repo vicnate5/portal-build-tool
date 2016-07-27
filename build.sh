@@ -205,23 +205,27 @@ ${sed} "s~app.server.parent.dir=.*~app.server.parent.dir=${bundleDir}~" app.serv
 echo
 echo "Configuring test.$username.properties for MySQL"
 ${sed} "s/database.mysql.schema=.*/database.mysql.schema=${db}/" test.$username.properties
-echo
-echo "Creating portal-ext.properties"
-ant -f build-test.xml prepare-portal-ext-properties
-echo
-echo "ANT CLEAN"
-ant clean
-echo "ANT COMPILE"
-ant compile
-echo "ANT BUILD-DIST-$appServer"
 
 if [[ $appServer == "tomcat" ]]
 then
+	echo
+	echo "ANT CLEAN"
+	ant clean
+	echo "ANT COMPILE"
+	ant compile
+	echo "ANT BUILD-DIST-$appServer"
 	ant -f build-dist.xml build-dist-tomcat \
 	-Dtomcat.keep.app.server.properties=true
 else
-	ant -f build-dist.xml build-dist-${appServer}
+	echo "Configuring app server type to $appServer"
+	${sed} "s/app.server.type=.*/app.server.type=${appServer}/" app.server.$username.properties
+	ant -f build-dist.xml unzip-${appServer}
+	ant all
 fi
+
+echo
+echo "Creating portal-ext.properties"
+ant -f build-test.xml prepare-portal-ext-properties
 
 echo "Remaking MySQL Database"
 dbClear
